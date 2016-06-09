@@ -1,0 +1,51 @@
+<header class="header" id="header"><!--header-start-->
+    <div class="container">
+        <figure class="logo animated fadeInDown delay-09s">
+            <img class='logo_index' src="/images/logo.png" alt="Logo">
+        </figure>
+        <div class="tab-form">
+            <ul class="tab-group">
+                <li class="tab active" id="li_login">LOGIN</li>
+                <li class="tab" id="li_signup">SIGNUP</li>
+            </ul>
+            <div class="tab-content">
+                <div id="login">
+                    <form id='form_login' action="javascript:">
+                        <div class="field-wrap">
+                            <input type="text" name="stdNum" required autocomplete="off" placeholder="학번(아이디)"/>
+                        </div>
+                        <div class="field-wrap">
+                            <input type="password" name="password" required autocomplete="off" placeholder="비밀번호"/>
+                        </div>
+                        <button type="submit" class="button button-block sign">Log In</button>
+                    </form>
+                </div>
+                <div id="signup">
+                    <form id='form_signup' action="javascript:">
+                        <div class="field-wrap">
+                            <input type="text" name="stdNum" required autocomplete="off" placeholder="학번(아이디)"/>
+                        </div>
+                        <div class="field-wrap">
+                            <input type="text" name="stdName" required autocomplete="off" placeholder="이름" />
+                        </div>
+                        <div class="field-wrap">
+                            <input type="password" name="password" required autocomplete="off" placeholder="비밀번호"/>
+                        </div>
+                        <button type="submit" class="button button-block sign">START</button>
+                    </form>
+                </div>
+            </div><!-- tab-content -->
+        </div> <!-- /form -->
+    </div>
+</header><!--header-end-->
+
+<div id="error_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body alert alert-danger" id="error_message"></div>
+        </div>
+    </div>
+</div>
+
+
+

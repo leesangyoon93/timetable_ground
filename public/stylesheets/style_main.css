@@ -1,0 +1,254 @@
+/*main page style*/
+
+table {
+    color: #efefef;
+    width: 100%;
+    height: 100%;
+    align-self: auto;
+    opacity: 0.9;
+    border: 0 !important;
+}
+table tr:nth-child(2n) {
+    background: #eff0f1;
+}
+table tr:nth-child(2n+3) {
+    background: #fff;
+}
+
+table th, table td {
+    padding: 1em 1em 1em 1em;
+    width: 10em;
+    height: 80px;
+    text-align: center;
+    border: 2px solid #333333;
+    border-radius: 1px;
+}
+
+
+button.delete {
+    font-family: 'Hanna', serif !important;
+    margin-left: 5px;
+    color: #ffffff;
+    background-color: #ff0000;
+    border-radius: 4px;
+    height: 15px !important;
+}
+td {
+    font-family: 'Hanna', serif !important;
+    color: #000000;
+}
+
+.days th {
+    height: 60px !important;
+}
+
+.days, .time {
+    background: #34495e;
+    text-transform: uppercase;
+    font-size: 1em;
+    text-align: center;
+}
+
+.time {
+    width: 5em !important;
+}
+
+h2.menu_title {
+    font-size:34px;
+    color:#ffffff;
+    font-family:"Comic Sans MS", cursive, sans-serif !important;
+    font-weight:700;
+    letter-spacing: 1px;
+    margin:0 0 15px 15px;
+    text-align:center;
+    text-transform:uppercase;
+}
+
+.main-section {
+    height: 800px;
+    display: none;
+}
+
+.main-section .container {
+    height: 750px !important;
+}
+
+div.tab {
+    height: 90% !important;
+}
+
+#tv_main {
+    display: block;
+    width: 100%;
+    align-self: auto;
+    opacity: 0.9;
+    text-align: center;
+    color:#000000;
+    font-family: 'Hanna', serif;
+    font-size: 30px;
+    font-weight:500;
+    letter-spacing: 1px;
+}
+
+#tv_main h2.menu_title {
+    font-family: 'Hanna', serif !important;
+    font-size: 60px !important;
+}
+#tv_main .container {
+    padding-top: 75px;
+}
+
+p.copyright {
+    color: #46b8da;
+    letter-spacing: 3px;
+}
+
+button#edit, button#search, button#compare, button#save {
+    background-color: #ffffff ;
+    font-family: 'Hanna', serif !important;
+    font-size: 30px !important;
+    color: #0042ff;
+    margin-left: 50px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+
+button#save {
+    margin-left: 20px !important;
+}
+
+.compare_input_div {
+    display: inline;
+}
+
+.compare_input {
+    display: inline;
+    width: 50%;
+    height: 35px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #000000;
+    color: #000000;
+    border-radius: 2px;
+}
+
+#edit_form {
+    font-family: 'Hanna', serif !important;
+}
+
+.major, .class {
+    display: inline;
+    width: 30%;
+    height: 35px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #000000;
+    color: #000000;
+    border-radius: 2px;
+}
+
+.major {
+    margin-right: 5px;
+}
+
+select.class, label.label {
+    display: none;
+}
+
+select.active, label.active {
+    display: inline-block;
+}
+
+.getClass {
+    font-size: 15px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    border: 2px solid black;
+    padding: 3px;
+}
+
+#delete {
+    width: 35px;
+    margin-left: 15px;
+}
+
+.modal-content h2 {
+    color: #000 !important;
+}
+
+.wrap_profile {
+    font-family: 'Montserrat', sans-serif, bold;
+    font-size: 2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.wrap_profile p {
+    font-family: 'Hanna', serif !important;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: .1em;
+    margin-bottom: 3px !important;
+}
+
+h2 p + .tooltip , #compare_tooltip + .tooltip {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 3px;
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.detail_info, .detail_info p {
+    font-family: 'Hanna', serif !important;
+    font-size: 18px !important;
+    display: inline-block;
+}
+
+#check_mark {
+    font-family: 'Hanna', serif !important;
+    font-size: 25px !important;
+    color: #ff0000;
+    margin-right: 3px;
+}
+
+.modal {
+    font-family: 'Hanna', serif !important;
+}
+
+#error_modal, #success_modal {
+    font-size: 40px !important;
+}
+
+#edit_add, #add {
+    background-color: #0000ff;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+#edit_delete, #delete {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+#edit_apply, #apply {
+    background-color: #00ff00;
+    color: #000000;
+    font-size: 20px;
+}
+
+@font-face {
+    font-family: 'Hanna';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot);
+    src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot?#iefix) format('embedded-opentype'),
+    url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format('truetype');
+}
