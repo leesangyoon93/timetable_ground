@@ -69,7 +69,7 @@ $(document).ready(function() {
 
         else if ($(this).attr('href') == '#' + 'tv_register') {
             count = 0;
-            $('#tv_register h2').html("TIMETABLE REGISTER & UPDATE <button id='edit'>등록(검색)</button><button data-toggle='tooltip' data-placement='right' title='CLICK!' id='save'>저장</button>");
+            $('#tv_register h2').html("시간표 등록/수정 <button class='btn btn-info' id='edit'>등록(검색)</button><button class='btn btn-success' data-toggle='tooltip' data-placement='right' title='CLICK!' id='save'>저장</button>");
 
             $('.main-section').hide();
             $('#tv_register').fadeIn(600);

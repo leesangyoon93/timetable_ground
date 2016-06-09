@@ -14,7 +14,7 @@ $(document).ready(function() {
 
         if ($(this).attr('href') == '#' + 'tv_search') {
             var count = 0;
-            $('#tv_search h2').html("TIMETABLE SEARCH <button data-toggle='tooltip' data-placement='right' title='CLICK!' id='search'>검색</button>");
+            $('#tv_search h2').html("시간표 검색 <button class='btn btn-info' data-toggle='tooltip' data-placement='right' title='CLICK!' id='search'>검색</button>");
 
             $('.main-section').hide();
             $('#tv_search').fadeIn(600);

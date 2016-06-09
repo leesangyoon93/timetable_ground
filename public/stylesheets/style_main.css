@@ -56,7 +56,7 @@ td {
 h2.menu_title {
     font-size:34px;
     color:#ffffff;
-    font-family:"Comic Sans MS", cursive, sans-serif !important;
+    font-family: 'Hanna', serif !important;
     font-weight:700;
     letter-spacing: 1px;
     margin:0 0 15px 15px;
@@ -104,10 +104,8 @@ p.copyright {
 }
 
 button#edit, button#search, button#compare, button#save {
-    background-color: #ffffff ;
     font-family: 'Hanna', serif !important;
     font-size: 30px !important;
-    color: #0042ff;
     margin-left: 50px;
     cursor: pointer;
     display: inline-block;
@@ -180,7 +178,7 @@ select.active, label.active {
 }
 
 .wrap_profile {
-    font-family: 'Montserrat', sans-serif, bold;
+    font-family: 'Hanna', serif !important;
     font-size: 2em;
     font-weight: 600;
     text-transform: uppercase;
@@ -221,24 +219,10 @@ h2 p + .tooltip , #compare_tooltip + .tooltip {
 }
 
 #error_modal, #success_modal {
-    font-size: 40px !important;
+    font-size: 20px !important;
 }
 
-#edit_add, #add {
-    background-color: #0000ff;
-    color: #ffffff;
-    font-size: 20px;
-}
-
-#edit_delete, #delete {
-    background-color: #ff0000;
-    color: #ffffff;
-    font-size: 20px;
-}
-
-#edit_apply, #apply {
-    background-color: #00ff00;
-    color: #000000;
+#edit_add, #add, #edit_delete, #delete, #edit_apply, #apply {
     font-size: 20px;
 }
 

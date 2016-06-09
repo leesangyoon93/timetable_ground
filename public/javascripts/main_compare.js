@@ -27,7 +27,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         if ($(this).attr('href') == '#' + 'tv_compare') {
-            $('#tv_compare').find('h2').html("TIMETABLE COMPARE OTHER STUDENTS <button data-toggle='tooltip' data-placement='right' title='CLICK!' id='compare'>비교</button>");
+            $('#tv_compare').find('h2').html("시간표 비교 <button class='btn btn-info' data-toggle='tooltip' data-placement='right' title='CLICK!' id='compare'>비교</button>");
 
             $('.main-section').hide();
             $('#tv_compare').fadeIn(600);
