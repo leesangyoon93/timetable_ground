@@ -9,7 +9,10 @@ $(document).ready(function() {
         if ($(this).attr('href') == '#' + 'profile') {
             var applyInfo = [];
             var resultInfo = [];
-
+            
+            $('#save').tooltip('hide');
+            $('#search').tooltip('hide');
+            $('#compare').tooltip('hide');
             $('.wrap_profile').children().remove();
             $.ajax({
                 type: 'GET',

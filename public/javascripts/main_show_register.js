@@ -34,11 +34,6 @@ $(document).ready(function() {
         }
     });
 
-    // $('.input_table tr td').click(function () {
-    //     currentEdit = $(this);
-    //     $('#input_modal').modal();
-    // });
-
     $('#update').on('click', function() {
         var info = $('#class_info').val();
         if(info == "") currentEdit.html("-");

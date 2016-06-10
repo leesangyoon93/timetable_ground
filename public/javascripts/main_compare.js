@@ -128,8 +128,8 @@ $(document).ready(function() {
                     if(resultInfo[count] == "POSSIBLE") {
                         $(this).html("Empty");
                         $(this).removeClass('overlap');
-                        $(this).css('background-color', '#05A10C');
-                        $(this).css('color', '#0000ff');
+                        $(this).css('background-color', '#449d44');
+                        $(this).css('color', '#000000');
                     }
                     else {
                         for(var i=0; i<resultInfo[count].length; i++) {
