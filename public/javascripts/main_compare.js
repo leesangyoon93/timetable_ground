@@ -119,7 +119,7 @@ $(document).ready(function() {
                 }
                 $('.compare_table tr td').each(function() {
                     var proportion = resultInfo[count].length / Object.keys(applyInfo).length;
-                    $(this).html("-");
+                    $(this).html("");
                     if(resultInfo[count] == "POSSIBLE") {
                         $(this).html("Empty");
                         $(this).css('background-color', '#05A10C');
