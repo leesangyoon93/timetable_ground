@@ -35,6 +35,7 @@ $(document).ready(function() {
 
             $('#compare').on('click', function() {
                 order = 2;
+                $('#compare').tooltip('hide');
                 $('.compare_input_div').remove();
                 $('#compare_form').append($("<div class='compare_input_div'><label for='class_info'>1</label><select class='compare_input append'><option id='default'>-</option></select><br></div>"));
                 getUserArray();
@@ -68,8 +69,6 @@ $(document).ready(function() {
         overlapInfo = {};
         resultInfo = {};
 
-        $('#compare_tooltip').tooltip();
-
         $('.compare_input').each(function () {
             var isOverlap = true;
             for(var i=0; i<Object.keys(applyInfo).length; i++) {
@@ -87,6 +86,7 @@ $(document).ready(function() {
             url: '/main/compare',
             data: applyInfo,
             success: function(data) {
+                $('#compare').tooltip('show');
                 var len = Object.keys(data).length;
                 var count = 0;
 
@@ -117,11 +117,17 @@ $(document).ready(function() {
                         }
                     }
                 }
+
                 $('.compare_table tr td').each(function() {
                     var proportion = resultInfo[count].length / Object.keys(applyInfo).length;
+
                     $(this).html("");
+                    $(this).css('cursor', 'default');
+                    $(this).css('opacity', 1);
+
                     if(resultInfo[count] == "POSSIBLE") {
                         $(this).html("Empty");
+                        $(this).removeClass('overlap');
                         $(this).css('background-color', '#05A10C');
                         $(this).css('color', '#0000ff');
                     }
@@ -138,17 +144,15 @@ $(document).ready(function() {
                         $(this).attr('id', "" + count);
                     }
                     count++;
-
-                });
-
-                $('.compare_table .overlap').on('click', function() {
-                    var id = $(this).attr('id');
-                    $('.wrap_detail').children().remove();
-                    for(var i=0; i<overlapCount[id]; i++) {
-                        $('.wrap_detail').append("<div class='detail_info'><p id='check_mark'>✔  </p><p>" +resultInfo[id][i]+ "</p></div></br>")
-                    }
-                    $('.wrap_detail button').remove();
-                    $('#compare_detail_modal').modal();
+                    $('.compare_table .overlap').on('click', function() {
+                        var id = $(this).attr('id');
+                        $('#compare').tooltip('hide');
+                        $('.wrap_detail').children().remove();
+                        for(var i=0; i<overlapCount[id]; i++)
+                            $('.wrap_detail').append("<div class='detail_info'><p id='check_mark'>✔  </p><p>" +resultInfo[id][i]+ "</p></div></br>")
+                        $('.wrap_detail button').remove();
+                        $('#compare_detail_modal').modal();
+                    });
                 });
             } // end success function
         })

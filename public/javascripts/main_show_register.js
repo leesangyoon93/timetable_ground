@@ -92,6 +92,7 @@ $(document).ready(function() {
 
             $('#edit').on('click', function() {
                 order = 2;
+                $('#save').tooltip('hide');
                 $('.edit_input_div').remove();
 
                 $('#edit_form').append($("<div class='edit_input_div'>1 : <label for='major'>전공(구분)</label><select class='major append1'><option id='default'>-</option></select><button class='getClass'>검색</button><label class='label' for='class'>과목</label><select class='class append2'><option id='default'>-</option></select><br></div>"));
@@ -214,6 +215,7 @@ $(document).ready(function() {
                 type: 'POST',
                 data: applyInfo,
                 success: function (data) {
+                    $('#save').tooltip('show');
                     var major = Object.keys(applyInfo);
                     for (var i = 0; i < data.length; i++) {
                         for (var j = 0; j < data[i].length; j++) {
@@ -223,8 +225,6 @@ $(document).ready(function() {
                             }
                         }
                     }
-                    console.log(resultArray);
-
                     for (var index in resultArray) {
                         var count = 0;
                         for (var timeCount in resultArray[index].time) {
