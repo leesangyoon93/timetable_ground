@@ -128,7 +128,7 @@ $(document).ready(function() {
                     if(resultInfo[count] == "POSSIBLE") {
                         $(this).html("Empty");
                         $(this).removeClass('overlap');
-                        $(this).css('background-color', '#31b0d5');
+                        $(this).css('background-color', '#449d44');
                         $(this).css('color', '#000000');
                     }
                     else {
