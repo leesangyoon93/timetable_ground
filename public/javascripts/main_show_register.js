@@ -182,7 +182,7 @@ $(document).ready(function() {
         var inputError = false;
 
         $('.major').each(function() {
-            if($(this).val() == "-") inputError = true;
+            if($(this).val() == "-" || $(this).val() == '') inputError = true;
             var isOverlap = true;
             for(var i in applyInfo) {
                 if(i == $(this).val())
@@ -194,7 +194,7 @@ $(document).ready(function() {
 
         $('.class').each(function () {
             var isOverlap = true;
-            if($(this).val() == '-') inputError = true;
+            if($(this).val() == '-' || $(this).val() == '') inputError = true;
             var majorValue = $(this).prev().prev().prev().val();
             for (var i in applyInfo[majorValue]) {
                 if (applyInfo[majorValue][i] == $(this).val())
