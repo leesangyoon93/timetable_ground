@@ -98,8 +98,18 @@ div.tab {
     padding-top: 75px;
 }
 
+div.intro {
+    background-color: #000000;
+    opacity: 0.7;
+    color: #ffffff;
+    margin-left: 140px;
+    margin-right: 140px;
+    padding: 20px;
+    border-radius: 50px;
+}
+
 p.copyright {
-    color: #46b8da;
+    font-size: 40px !important;
     letter-spacing: 3px;
 }
 

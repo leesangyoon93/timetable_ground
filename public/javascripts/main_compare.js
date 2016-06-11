@@ -121,13 +121,13 @@ $(document).ready(function() {
                 $('.compare_table tr td').each(function() {
                     var proportion = resultInfo[count].length / Object.keys(applyInfo).length;
 
-                    $(this).html("");
+                    $(this).html("-");
                     $(this).css('cursor', 'default');
                     $(this).css('opacity', 1);
 
                     if(resultInfo[count] == "POSSIBLE") {
                         $(this).html("Empty");
-                        $(this).removeClass('overlap');
+                        $(this).attr('id', "");
                         $(this).css('background-color', '#449d44');
                         $(this).css('color', '#000000');
                     }
@@ -140,18 +140,19 @@ $(document).ready(function() {
                         }
                         $(this).css('cursor', 'pointer');
                         $(this).css('color', '#ffffff');
-                        $(this).addClass('overlap');
                         $(this).attr('id', "" + count);
                     }
                     count++;
-                    $('.compare_table .overlap').on('click', function() {
-                        var id = $(this).attr('id');
-                        $('#compare').tooltip('hide');
-                        $('.wrap_detail').children().remove();
-                        for(var i=0; i<overlapCount[id]; i++)
-                            $('.wrap_detail').append("<div class='detail_info'><p id='check_mark'>✔  </p><p>" +resultInfo[id][i]+ "</p></div></br>")
-                        $('.wrap_detail button').remove();
-                        $('#compare_detail_modal').modal();
+                    $(this).on('click', function() {
+                        if($(this).html() != 'Empty') {
+                            var id = $(this).attr('id');
+                            $('#compare').tooltip('hide');
+                            $('.wrap_detail').children().remove();
+                            for (var i = 0; i < overlapCount[id]; i++)
+                                $('.wrap_detail').append("<div class='detail_info'><p id='check_mark'>✔  </p><p>" + resultInfo[id][i] + "</p></div></br>")
+                            $('.wrap_detail button').remove();
+                            $('#compare_detail_modal').modal();
+                        }
                     });
                 });
             } // end success function
