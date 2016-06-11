@@ -121,7 +121,7 @@ $(document).ready(function() {
                 $('.compare_table tr td').each(function() {
                     var proportion = resultInfo[count].length / Object.keys(applyInfo).length;
 
-                    $(this).html("-");
+                    $(this).html("");
                     $(this).css('cursor', 'default');
                     $(this).css('opacity', 1);
 
