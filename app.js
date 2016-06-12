@@ -31,7 +31,6 @@ require('./models/user.model');
 require('./models/user.timetable');
 require('./models/class.info');
 var User = mongoose.model('User');
-// var Timetable = mongoose.model('Timetable');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,12 +51,11 @@ app.use(session({
   saveUninitialized: true,
   resave: true,
   secret : 'MySecret',
-  cookie: {maxAge: 1000*60*60}
+  cookie: {maxAge: 3000*60*60}
 }));
 
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());

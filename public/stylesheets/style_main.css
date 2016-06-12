@@ -26,7 +26,6 @@ table th, table td {
 
 
 button.delete {
-    font-family: 'Hanna', serif !important;
     margin-left: 5px;
     color: #ffffff;
     background-color: #ff0000;
@@ -34,7 +33,6 @@ button.delete {
     height: 15px !important;
 }
 td {
-    font-family: 'Hanna', serif !important;
     color: #000000;
 }
 
@@ -56,7 +54,6 @@ td {
 h2.menu_title {
     font-size:34px;
     color:#ffffff;
-    font-family: 'Hanna', serif !important;
     font-weight:700;
     letter-spacing: 1px;
     margin:0 0 15px 15px;
@@ -84,16 +81,15 @@ div.tab {
     opacity: 0.9;
     text-align: center;
     color:#000000;
-    font-family: 'Hanna', serif;
     font-size: 30px;
     font-weight:500;
     letter-spacing: 1px;
 }
 
 #tv_main h2.menu_title {
-    font-family: 'Hanna', serif !important;
     font-size: 60px !important;
 }
+
 #tv_main .container {
     padding-top: 75px;
 }
@@ -114,7 +110,6 @@ p.copyright {
 }
 
 button#edit, button#search, button#compare, button#save {
-    font-family: 'Hanna', serif !important;
     font-size: 30px !important;
     margin-left: 50px;
     cursor: pointer;
@@ -143,10 +138,6 @@ button#save {
     border-radius: 2px;
 }
 
-#edit_form {
-    font-family: 'Hanna', serif !important;
-}
-
 .major, .class {
     display: inline;
     width: 30%;
@@ -170,14 +161,6 @@ select.active, label.active {
     display: inline-block;
 }
 
-.getClass {
-    font-size: 15px;
-    margin-right: 10px;
-    margin-bottom: 15px;
-    border: 2px solid black;
-    padding: 3px;
-}
-
 #delete {
     width: 35px;
     margin-left: 15px;
@@ -188,7 +171,6 @@ select.active, label.active {
 }
 
 .wrap_profile {
-    font-family: 'Hanna', serif !important;
     font-size: 2em;
     font-weight: 600;
     text-transform: uppercase;
@@ -196,7 +178,6 @@ select.active, label.active {
 }
 
 .wrap_profile p {
-    font-family: 'Hanna', serif !important;
     font-size: 20px;
     font-weight: 300;
     letter-spacing: .1em;
@@ -212,28 +193,18 @@ h2 p + .tooltip , #compare_tooltip + .tooltip {
 }
 
 .detail_info, .detail_info p {
-    font-family: 'Hanna', serif !important;
     font-size: 18px !important;
     display: inline-block;
 }
 
 #check_mark {
-    font-family: 'Hanna', serif !important;
     font-size: 25px !important;
     color: #ff0000;
     margin-right: 3px;
 }
 
-.modal {
-    font-family: 'Hanna', serif !important;
-}
-
-#error_modal, #success_modal {
+#error_modal, #success_modal, #edit_add, #add, #edit_delete, #delete, #edit_apply, #apply {
     font-size: 20px !important;
-}
-
-#edit_add, #add, #edit_delete, #delete, #edit_apply, #apply {
-    font-size: 20px;
 }
 
 @font-face {

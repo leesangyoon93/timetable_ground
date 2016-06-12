@@ -1,6 +1,7 @@
 /**
  * Created by Sangyoon on 2016-06-02.
  */
+
 $(document).ready(function() {
     var order = 2;
     var userArray = [];

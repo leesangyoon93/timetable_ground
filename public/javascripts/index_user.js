@@ -1,6 +1,7 @@
 /**
  * Created by Sangyoon on 2016-05-27.
  */
+
 $(document).ready(function() {
     $('.logo_index').on('click', function() {
         $('.tab-form').fadeIn(600);

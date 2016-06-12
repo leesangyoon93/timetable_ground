@@ -77,8 +77,10 @@ module.exports = function(passport){
     Timetable.findOne({'creator': req.user.stdNum}, function(err, table) {
       if(err) throw err;
 
-      table.remove();
-      createTimetable(req);
+      if(table) {
+        table.remove();
+        createTimetable(req);
+      }
     });
     res.json({result: 'success'});
   });
@@ -87,7 +89,7 @@ module.exports = function(passport){
     var resultObj = [];
     var count = 0;
     var majorArray = Object.keys(req.body);
-    
+
     for(var i in majorArray) {
       Class.findOne({'major': majorArray[i]}, function(err, major) {
         resultObj[count] = major.classInfo;
@@ -110,7 +112,7 @@ module.exports = function(passport){
   router.get('/main/compare', function(req, res) {
     User.find().select('stdNum').exec(function(err, users) {
       if(err) throw err;
-      else return res.send(users);
+      else return res.json(users);
     })
   });
 

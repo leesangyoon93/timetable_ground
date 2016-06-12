@@ -7,7 +7,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-// Define a new 'ArticleSchema'
 var TimetableSchema = new Schema({
     created: {
         type: Date,
@@ -25,5 +24,4 @@ var TimetableSchema = new Schema({
 
 });
 
-// Create the 'Article' model out of the 'ArticleSchema'
 mongoose.model('Timetable', TimetableSchema);

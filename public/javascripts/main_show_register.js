@@ -2,7 +2,6 @@
  * Created by Sangyoon on 2016-05-29.
  */
 
-
 $(document).ready(function() {
     var dataObject = {};
     var majorArray = [];
@@ -90,7 +89,7 @@ $(document).ready(function() {
                 $('#save').tooltip('hide');
                 $('.edit_input_div').remove();
 
-                $('#edit_form').append($("<div class='edit_input_div'>1 : <label for='major'>전공(구분)</label><select class='major append1'><option id='default'>-</option></select><button class='getClass'>검색</button><label class='label' for='class'>과목</label><select class='class append2'><option id='default'>-</option></select><br></div>"));
+                $('#edit_form').append($("<div class='edit_input_div'>1 : <label for='major'>전공(구분)</label><select class='major append1'><option id='default'>-</option></select><label class='label' for='class'>과목</label><select class='class append2'><option id='default'>-</option></select><br></div>"));
                 getMajorArray();
 
                 $('#edit_modal').modal();
@@ -118,40 +117,39 @@ $(document).ready(function() {
     });
 
     $('#edit_add').on('click', function() {
-        if ($('#edit_form').find('.class:last').val() != '-' && $('#edit_form').find('.major:last').val()) {
-            $('#edit_form').append($("<div class='edit_input_div'>" + order + " : <label for='major'>전공(구분)</label><select class='major append1'><option id='default'>-</option></select><button class='getClass'>검색</button><label class='label' for='class'>과목</label><select class='class'><option id='default'>-</option></select><br></div>"));
+        if ($('#edit_form').find('.class:last').val() != '-' && $('#edit_form').find('.major:last').val() != '-') {
+            $('#edit_form').append($("<div class='edit_input_div'>" + order + " : <label for='major'>전공(구분)</label><select class='major append1'><option id='default'>-</option></select><label class='label' for='class'>과목</label><select class='class'><option id='default'>-</option></select><br></div>"));
             getMajorArray();
             order++;
         }
         else {
-            if($('edit_form').find('major') != null) {
-                $('#edit_form').append($("<div class='edit_input_div'>" + order + " : <label for='major'>전공(구분)</label><select class='major append1'><option id='default'>-</option></select><button class='getClass'>검색</button><label class='label' for='class'>과목</label><select class='class'><option id='default'>-</option></select><br></div>"));
+            if(order == 1) {
+                $('#edit_form').append($("<div class='edit_input_div'>" + order + " : <label for='major'>전공(구분)</label><select class='major append1'><option id='default'>-</option></select><label class='label' for='class'>과목</label><select class='class'><option id='default'>-</option></select><br></div>"));
                 getMajorArray();
                 order++;
             }
             else {
-                $('#error_message').html("과목 선택 후 추가해주세요.");
+                $('#error_message').html("전공/과목 선택 후 추가해주세요.");
                 $('#error_modal').modal();
             }
         }
     });
 
     var getMajorArray = function() {
-        for(var i=0; i<majorArray.length; i++) {
+        for(var i=0; i<majorArray.length; i++)
             $('.append1').append("<option>" +majorArray[i]+ "</option>");
-        }
+
         $('.major').removeClass('append1');
 
-        $('.getClass').on('click', function() {
-            var currentGet = $(this);
-            var currentClassList = currentGet.next().next();
-            if(currentGet.prev().val() != '-') {
-                currentGet.nextAll().addClass('active');
+        $('.major').on('change', function() {
+            var currentClassList = $(this).next().next();
+            if($(this).val() != '-') {
+                $(this).nextAll().addClass('active');
                 $('label.active').removeClass('label');
                 $.ajax({
                     url: '/main/classInfo',
                     type: 'POST',
-                    data: {target: currentGet.prev().val()},
+                    data: {target: $(this).val()},
                     dataType: 'json',
                     success: function (data) {
                         if (data != null) {
@@ -163,7 +161,7 @@ $(document).ready(function() {
                 });
             }
             else {
-                $('#error_message').html("전공을 선택해 주세요");
+                $('#error_message').html("과목구분을 선택해 주세요");
                 $('#error_modal').modal();
             }
         });
@@ -182,7 +180,7 @@ $(document).ready(function() {
         var inputError = false;
 
         $('.major').each(function() {
-            if($(this).val() == "-" || $(this).val() == '') inputError = true;
+            if($(this).val() == "-") inputError = true;
             var isOverlap = true;
             for(var i in applyInfo) {
                 if(i == $(this).val())
@@ -192,10 +190,12 @@ $(document).ready(function() {
                 applyInfo[$(this).val()] = [];
         });
 
+        if(order == 1) inputError = true;
+
         $('.class').each(function () {
             var isOverlap = true;
-            if($(this).val() == '-' || $(this).val() == '') inputError = true;
-            var majorValue = $(this).prev().prev().prev().val();
+            if($(this).val() == '-') inputError = true;
+            var majorValue = $(this).prev().prev().val();
             for (var i in applyInfo[majorValue]) {
                 if (applyInfo[majorValue][i] == $(this).val())
                     isOverlap = false;
@@ -239,9 +239,8 @@ $(document).ready(function() {
                     $('.input_table tr td').each(function() {
                         var cutPos = $(this).html().indexOf('<bu');
                         for(var overlapIndex in overlapClass) {
-                            if(overlapClass[overlapIndex] == $(this).html().substring(0, cutPos)) {
+                            if(overlapClass[overlapIndex] == $(this).html().substring(0, cutPos))
                                 $(this).html('-');
-                            }
                         }
                     });
 
@@ -254,7 +253,7 @@ $(document).ready(function() {
                         })
                     });
                 }
-            })
+            });
             $('#success_message').html("시간표 업데이트 완료! 저장해주세요.<br> 중복되는 시간표는 업데이트 되지 않습니다. 확인해주세요.");
             $('#success_modal').modal();
         }
