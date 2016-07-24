@@ -61,7 +61,6 @@ module.exports = function(passport){
       res.redirect('/');
     }
     else {
-      console.log(req.user);
       res.render('main');
     }
   });
@@ -92,10 +91,17 @@ module.exports = function(passport){
 
     for(var i in majorArray) {
       Class.findOne({'major': majorArray[i]}, function(err, major) {
-        resultObj[count] = major.classInfo;
-        count++;
-        if(count == majorArray.length)
-          return res.json(resultObj);
+        if(major) {
+          resultObj[count] = major.classInfo;
+          count++;
+          if (count == majorArray.length)
+            return res.json(resultObj);
+        }
+        else {
+          count++;
+          if (count == majorArray.length)
+            return res.json(resultObj);
+        }
       });
     }
   });
@@ -110,7 +116,7 @@ module.exports = function(passport){
   });
 
   router.get('/main/compare', function(req, res) {
-    User.find().select('stdNum').exec(function(err, users) {
+    User.find().exec(function(err, users) {
       if(err) throw err;
       else return res.json(users);
     })
@@ -162,8 +168,8 @@ module.exports = function(passport){
     timetable.creator = req.user.stdNum;
     timetable.creatorName = req.user.stdName;
     for (var i = 0; i < 5; i++) {
-      timetable.data[i] = new Array(8);
-      for (var j = 0; j < 8; j++) {
+      timetable.data[i] = new Array(21);
+      for (var j = 0; j < 21; j++) {
         if(init) timetable.data[i][j] = "-";
         else timetable.data[i][j] = req.body[5*j+i];
       }

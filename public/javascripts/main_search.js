@@ -38,7 +38,7 @@ $(document).ready(function() {
                 $('#search').tooltip('show');
                 if(data != null) {
                     for (var i = 0; i < 5; i++) {
-                        for (var j = 0; j < 8; j++)
+                        for (var j = 0; j < 21; j++)
                             getDataObject[5 * j + i] = data[i][j];
                     }
                     $('.search_table tr td').each(function () {

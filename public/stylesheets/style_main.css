@@ -7,23 +7,24 @@ table {
     align-self: auto;
     opacity: 0.9;
     border: 0 !important;
+    margin-bottom: 30px;
 }
-table tr:nth-child(2n) {
+table tr:nth-child(6n+4), table tr:nth-child(6n+2), table tr:nth-child(6n+3) {
     background: #eff0f1;
 }
-table tr:nth-child(2n+3) {
+
+table tr:nth-child(6n+7), table tr:nth-child(6n+5), table tr:nth-child(6n+6) {
     background: #fff;
 }
 
 table th, table td {
-    padding: 1em 1em 1em 1em;
+    padding: 0.3em 1em 0.3em 1em;
     width: 10em;
-    height: 80px;
+    height: 40px;
     text-align: center;
     border: 2px solid #333333;
     border-radius: 1px;
 }
-
 
 button.delete {
     margin-left: 5px;
@@ -62,12 +63,18 @@ h2.menu_title {
 }
 
 .main-section {
-    height: 800px;
+    height: 100% !important;
     display: none;
 }
 
 .main-section .container {
-    height: 750px !important;
+    height: 100% !important;
+    width: 1500px !important;
+}
+
+#tv_main .container{
+    width: 1200px !important;
+    margin-top: 25px;
 }
 
 div.tab {
@@ -90,8 +97,9 @@ div.tab {
     font-size: 60px !important;
 }
 
-#tv_main .container {
-    padding-top: 75px;
+h4 {
+    text-align: center;
+    margin: 0 !important;
 }
 
 div.intro {
@@ -100,6 +108,7 @@ div.intro {
     color: #ffffff;
     margin-left: 140px;
     margin-right: 140px;
+    margin-top: 50px;
     padding: 20px;
     border-radius: 50px;
 }
@@ -127,15 +136,20 @@ button#save {
     display: inline;
 }
 
-.compare_input {
+.compare_input, .search_input {
     display: inline;
-    width: 50%;
+    width: 30%;
     height: 35px;
     margin-left: 15px;
     margin-bottom: 15px;
+    margin-right: 15px;
     border: 2px solid #000000;
     color: #000000;
     border-radius: 2px;
+}
+
+.btn_userCheck {
+    margin-right: 10px;
 }
 
 .major, .class {

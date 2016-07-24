@@ -24,7 +24,7 @@ $(document).ready(function() {
                     wrap_profile.append("<p>이름 : " + data.creatorName + "</p><br>");
                     wrap_profile.append("<p> - 수강과목 - </p><br>");
                     for(var i=0; i<5; i++) {
-                        for(var j=0; j<8; j++) {
+                        for(var j=0; j<21; j++) {
                             var isOverlap = true;
                             var cutPos = data.data[i][j].indexOf('<br>');
                             var cutResult = data.data[i][j].substring(0, cutPos);

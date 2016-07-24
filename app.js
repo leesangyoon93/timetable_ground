@@ -17,13 +17,13 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:test');
-var db = mongoose.connection;
-db.once("open",function () {
-  console.log("DB connected!");
-});
-db.on("error",function (err) {
-  console.log("DB ERROR :", err);
+mongoose.connect('mongodb://localhost:test', function(err) {
+  if(err) {
+    console.log("DB ERROR :", err);
+    throw err;
+  }
+  else
+    console.log("DB connected!");
 });
 
 // Database Model Load

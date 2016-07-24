@@ -1,14 +1,12 @@
 /**
  * Created by Sangyoon on 2016-05-29.
  */
-
 $(document).ready(function() {
     var dataObject = {};
     var majorArray = [];
     var resultArray = [];
     var order = 1;
     var count = 0;
-    var currentEdit;
 
     $.ajax({
         type: 'GET',
@@ -17,7 +15,7 @@ $(document).ready(function() {
         success: function(data) {
             count = 0;
             for (var i = 0; i < 5; i++) {
-                for (var j = 0; j < 8; j++)
+                for (var j = 0; j < 21; j++)
                     dataObject[5 * j + i] = data[i][j];
             }
         }
@@ -33,31 +31,20 @@ $(document).ready(function() {
         }
     });
 
-    $('#update').on('click', function() {
-        var info = $('#class_info').val();
-        if(info == "") currentEdit.html("-");
-        else currentEdit.html(info);
-    });
-
-    $('#reset').on('click', function() {
-        currentEdit.html("-");
-    });
-
     $('.main-nav li a').on('click', function (e) {
 
         e.preventDefault();
 
         if ($(this).attr('href') == '#' + 'tv_show') {
             count = 0;
-            $('#tv_show h2').html("MY TIMETABLE")
+            $('#tv_show h2').html("내 시간표");
             $('.main-section').hide();
             $('#tv_show').fadeIn(600);
 
             $('.show_table tr td').each(function () {
                 $(this).html(dataObject[count]);
                 count++;
-            })
-
+            });
             $('.show_table tr td button.delete').remove();
         }
 
@@ -154,6 +141,10 @@ $(document).ready(function() {
                     success: function (data) {
                         if (data != null) {
                             currentClassList.children().not('#default').remove();
+                            data[0].classInfo.sort(function(a, b) {
+                                if(a.name < b.name) return -1;
+                                return 1;
+                            });
                             for (var i = 0; i < data[0].classInfo.length; i++)
                                 currentClassList.append("<option>" + data[0].classInfo[i].name + "</option>");
                         }
@@ -165,7 +156,6 @@ $(document).ready(function() {
                 $('#error_modal').modal();
             }
         });
-
     };
 
     $('#edit_delete').on('click', function() {
@@ -180,7 +170,7 @@ $(document).ready(function() {
         var inputError = false;
 
         $('.major').each(function() {
-            if($(this).val() == "-") inputError = true;
+            // if($(this).val() == "-") inputError = true;
             var isOverlap = true;
             for(var i in applyInfo) {
                 if(i == $(this).val())
@@ -194,7 +184,7 @@ $(document).ready(function() {
 
         $('.class').each(function () {
             var isOverlap = true;
-            if($(this).val() == '-') inputError = true;
+            // if($(this).val() == '-') inputError = true;
             var majorValue = $(this).prev().prev().val();
             for (var i in applyInfo[majorValue]) {
                 if (applyInfo[majorValue][i] == $(this).val())
@@ -254,7 +244,7 @@ $(document).ready(function() {
                     });
                 }
             });
-            $('#success_message').html("시간표 업데이트 완료! 저장해주세요.<br> 중복되는 시간표는 업데이트 되지 않습니다. 확인해주세요.");
+            $('#success_message').html("시간표 업데이트 완료! 저장해주세요.<br> 겹치는 시간표, 과목선택을 안한 경우는 업데이트 되지 않습니다.");
             $('#success_modal').modal();
         }
         else {
@@ -262,5 +252,4 @@ $(document).ready(function() {
             $('#error_modal').modal();
         }
     });
-
 });
