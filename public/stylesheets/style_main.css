@@ -58,7 +58,7 @@ h2.menu_title {
     font-weight:700;
     letter-spacing: 1px;
     margin:0 0 15px 15px;
-    text-align:center;
+    text-align:center !important;
     text-transform:uppercase;
 }
 
@@ -132,14 +132,23 @@ button#save {
     margin-left: 20px !important;
 }
 
+.edit_input_div {
+    font-size: 20px !important;
+}
+
+#edit_modal .modal-content, #edit_modal .modal-dialog {
+    width: 800px !important;
+}
+
 .compare_input_div {
     display: inline;
 }
 
-.compare_input, .search_input {
+.compare_input, #search_input {
     display: inline;
     width: 30%;
     height: 35px;
+    font-size: 20px !important;
     margin-left: 15px;
     margin-bottom: 15px;
     margin-right: 15px;
@@ -154,7 +163,6 @@ button#save {
 
 .major, .class {
     display: inline;
-    width: 30%;
     height: 35px;
     margin-left: 10px;
     margin-bottom: 15px;
@@ -164,7 +172,12 @@ button#save {
 }
 
 .major {
+    width: 25%;
     margin-right: 5px;
+}
+
+.class {
+    width: 50%;
 }
 
 select.class, label.label {

@@ -11,9 +11,12 @@ var UserSchema = new Schema({
     },
     stdName: {
         type: String,
-        unique: true
+        unique: false
     },
     password: {
+        type: String
+    },
+    birthday: {
         type: String
     },
     provider: {

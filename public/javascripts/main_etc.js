@@ -3,13 +3,13 @@
  */
 $(document).ready(function() {
     $('.main-nav li a').on('click', function (e) {
-
+        console.log("프로필을 눌렀습니다.");
         e.preventDefault();
 
         if ($(this).attr('href') == '#' + 'profile') {
             var applyInfo = [];
             var resultInfo = [];
-            
+
             $('#save').tooltip('hide');
             $('#search').tooltip('hide');
             $('#compare').tooltip('hide');
@@ -46,6 +46,32 @@ $(document).ready(function() {
                     $('#profile').modal();
                 }
             });
+            $('#pwChange').on('click', function() {
+                $('#change_form').find('input').val("");
+                $('#change_modal').modal();
+
+                $('#change').on('click', function() {
+                    var changeObject = {'pw1':$('#change_pw1').val(), 'pw2':$('#change_pw2').val(), 'pw3':$('#new_pw').val()};
+
+                    $.ajax({
+                        url: '/change',
+                        type: 'POST',
+                        data: changeObject,
+                        success: function(data) {
+                            if(data.result == 'success') {
+                                $('#change_form').find('input').val("");
+                                $('#success_message').html("비밀번호가 정상적으로 변경되었습니다.");
+                                $('#success_modal').modal();
+                            }
+                            else {
+                                $('#change_form').find('input').val("");
+                                $('#error_message').html("비밀번호가 일치하지 않습니다. 정확하게 입력해주세요.");
+                                $('#error_modal').modal();
+                            }
+                        }
+                    })
+                })
+            })
         }
         else if ($(this).attr('href') == '#' + 'main') {
             top.location.href = '/main'
@@ -54,5 +80,5 @@ $(document).ready(function() {
         else if ($(this).attr('href') == '#' + 'logout') {
             top.location.href = '/logout'
         }
-    })
+    });
 });

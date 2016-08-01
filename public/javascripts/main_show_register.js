@@ -145,8 +145,14 @@ $(document).ready(function() {
                                 if(a.name < b.name) return -1;
                                 return 1;
                             });
-                            for (var i = 0; i < data[0].classInfo.length; i++)
-                                currentClassList.append("<option>" + data[0].classInfo[i].name + "</option>");
+                            for (var i = 0; i < data[0].classInfo.length; i++) {
+                                var timeString = "";
+                                for(var j in data[0].classInfo[i].time) {
+                                    timeString += data[0].classInfo[i].time[j];
+                                    timeString += " ";
+                                }
+                                currentClassList.append("<option>" + data[0].classInfo[i].name + ' / ' + data[0].classInfo[i].prof + ' / ' + timeString + "</option>");
+                            }
                         }
                     }
                 });
@@ -167,6 +173,8 @@ $(document).ready(function() {
         resultArray = [];
         var overlapClass = [];
         var applyInfo = {};
+        var profApplyInfo = {};
+        var timeApplyInfo = {};
         var inputError = false;
 
         $('.major').each(function() {
@@ -176,8 +184,11 @@ $(document).ready(function() {
                 if(i == $(this).val())
                     isOverlap = false;
             }
-            if(isOverlap)
+            if(isOverlap) {
                 applyInfo[$(this).val()] = [];
+                profApplyInfo[$(this).val()] = [];
+                timeApplyInfo[$(this).val()] = [];
+            }
         });
 
         if(order == 1) inputError = true;
@@ -190,9 +201,75 @@ $(document).ready(function() {
                 if (applyInfo[majorValue][i] == $(this).val())
                     isOverlap = false;
             }
-            if (isOverlap)
-                applyInfo[majorValue].push($(this).val());
+            if (isOverlap) {
+                var splitInfo = $(this).val().split(' / ');
+                applyInfo[majorValue].push(splitInfo[0]);
+                profApplyInfo[majorValue].push(splitInfo[1]);
+                timeApplyInfo[majorValue].push(splitInfo[2].split(' '));
+            }
         });
+
+        var getTimeCount = function(timeString) {
+            var day = timeString.substr(0,1);
+            var time = timeString.substring(1,timeString.length);
+            var count = 3;
+
+            if(time*1 < 12)
+                count = 2;
+            else {
+                switch(time) {
+                    case 'A':
+                        time = 1;
+                        break;
+                    case 'B':
+                        time = 2.5;
+                        break;
+                    case 'C':
+                        time = 4;
+                        break;
+                    case 'D':
+                        time = 5.5;
+                        break;
+                    case 'E':
+                        time = 7;
+                        break;
+                    case 'F':
+                        time = 8.5;
+                        break;
+                    case 'G':
+                        time = 10;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            var returnCount = function(dayNum) {
+                var returnArray = [];
+                var timeCount = ((time-1)*2)*5+dayNum;
+
+                for(var i=0; i<count; i++) {
+                    returnArray.push(timeCount);
+                    timeCount += 5;
+                }
+                return returnArray;
+            };
+
+            switch(day) {
+                case '월':
+                    return returnCount(0);
+                case '화':
+                    return returnCount(1);
+                case '수':
+                    return returnCount(2);
+                case '목':
+                    return returnCount(3);
+                case '금':
+                    return returnCount(4);
+                default:
+                    break;
+            }
+        };
 
         if(!inputError) {
             $.ajax({
@@ -205,22 +282,31 @@ $(document).ready(function() {
                     for (var i = 0; i < data.length; i++) {
                         for (var j = 0; j < data[i].length; j++) {
                             for (var k = 0; k < applyInfo[major[i]].length; k++) {
-                                if (applyInfo[major[i]][k] == data[i][j].name)
-                                    resultArray.push(data[i][j]);
+                                var checkTimeCount = 0;
+                                for(var l=0; l < data[i][j].time.length; l++) {
+                                    if(data[i][j].time[l] == timeApplyInfo[major[i]][k][l]) {
+                                        checkTimeCount++;
+                                        if (applyInfo[major[i]][k] == data[i][j].name && profApplyInfo[major[i]][k] == data[i][j].prof && checkTimeCount == data[i][j].time.length)
+                                            resultArray.push(data[i][j]);
+                                    }
+                                }
                             }
                         }
                     }
                     for (var index in resultArray) {
                         var count = 0;
                         for (var timeCount in resultArray[index].time) {
-                            if($('.' + resultArray[index].time[timeCount]).html() == '-')
-                                $('.' + resultArray[index].time[timeCount]).html(resultArray[index].name + "<button class='delete'>×</button><br>" + resultArray[index].prof + " / " + resultArray[index].classroom[timeCount]);
-                            else {
-                                overlapClass.push(resultArray[index].name);
-                                count++;
-                                if(resultArray[index].time.length == count) {
-                                    for(var idx=0; idx<count; idx++)
-                                        overlapClass.pop();
+                            var timeArray = getTimeCount(resultArray[index].time[timeCount]);
+                            for (var timeNum in timeArray) {
+                                if ($('.' + timeArray[timeNum]).html() == '-')
+                                    $('.' + timeArray[timeNum]).html(resultArray[index].name + "<button class='delete'>×</button><br>" + resultArray[index].prof + " / " + resultArray[index].classroom[timeCount]);
+                                else {
+                                    overlapClass.push(resultArray[index].name);
+                                    count++;
+                                    if (resultArray[index].time.length == count) {
+                                        for (var idx = 0; idx < count; idx++)
+                                            overlapClass.pop();
+                                    }
                                 }
                             }
                         }

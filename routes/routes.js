@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var bcrypt = require("bcrypt-nodejs");
 var router = express.Router();
 var User = mongoose.model('User');
 var Timetable = mongoose.model('Timetable');
@@ -39,7 +40,6 @@ module.exports = function(passport){
         req.login(user, function (err) {
           // If a login error occurs move to the next middleware
           if (err) return next(err);
-          console.log('user login');
           // Redirect the user back to the main application page
           createTimetable(req, true);
           return res.json({result: 'success'});
@@ -48,6 +48,39 @@ module.exports = function(passport){
     } else {
       createTimetable(req, "-");
       return res.json({result: 'success'});
+    }
+  });
+  
+  router.post('/find', function(req, res) {
+    User.findOne({'stdNum': req.body.stdNum}, function(err, user) {
+      if(err) throw err;
+      if(!user)
+          return res.json({result: 'fail'});
+      else {
+        if(req.body.stdName == user.stdName && req.body.stdBirth == user.birthday) {
+          user.password = req.body.stdBirth;
+          user.save();
+          return res.json({result: 'success'});
+        }
+        else return res.json({result: 'fail'});
+      }
+    })
+  });
+  
+  router.post('/change', function(req, res) {
+    console.log(req.body);
+    if(req.body.pw1 === req.body.pw2 && bcrypt.compareSync(req.body.pw2, req.user.password)) {
+      User.findOne({'stdNum': req.user.stdNum}, function(err, user) {
+        if(err) throw err;
+        if(user) {
+          user.password = req.body.pw3;
+          user.save();
+          return res.json({result: 'success'});
+        }
+      });
+    }
+    else {
+      return res.json({result: 'fail'});
     }
   });
 
@@ -88,7 +121,7 @@ module.exports = function(passport){
     var resultObj = [];
     var count = 0;
     var majorArray = Object.keys(req.body);
-
+    
     for(var i in majorArray) {
       Class.findOne({'major': majorArray[i]}, function(err, major) {
         if(major) {

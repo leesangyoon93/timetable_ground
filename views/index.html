@@ -19,6 +19,7 @@
                         </div>
                         <button type="submit" class="button button-block sign">Log In</button>
                     </form>
+                    <button class="button button-block find">비밀번호 초기화</button>
                 </div>
                 <div id="signup">
                     <form id='form_signup' action="javascript:">
@@ -31,6 +32,9 @@
                         <div class="field-wrap">
                             <input type="password" name="password" required autocomplete="off" placeholder="비밀번호"/>
                         </div>
+                        <div class="field-wrap">
+                            <input type="text" name="birthday" required autocomplete="off" placeholder="생년월일(비밀번호찾기용)"/>
+                        </div>
                         <button type="submit" class="button button-block sign">START</button>
                     </form>
                 </div>
@@ -39,6 +43,38 @@
     </div>
 </header><!--header-end-->
 
+<div class="modal fade" id="find_modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="menu_title">아래에 정보를 입력해주세요.</h2>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:" id='find_form'>
+                    <label class='short' for="find_stdNum">학번 </label>
+                    <input type="text" id='find_stdNum' class='search_input' placeholder="학번(아이디)" required><br>
+                    <label class='short' for="find_stdName">이름 </label>
+                    <input type="text" id='find_stdName' class='search_input' placeholder="이름" required><br>
+                    <label for="find_birthday">생년월일 </label>
+                    <input type="text" id='find_birthday' class='search_input' placeholder="생년월일" required>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="find" class="btn btn-success">RESET</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="success_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body alert alert-success" id="success_message"></div>
+        </div>
+    </div>
+</div>
 
 <div id="error_modal" class="modal fade">
     <div class="modal-dialog">
@@ -47,6 +83,7 @@
         </div>
     </div>
 </div>
+
 
 
 

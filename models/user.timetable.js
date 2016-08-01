@@ -18,7 +18,7 @@ var TimetableSchema = new Schema({
     },
     creatorName: {
         type: String,
-        unique: true
+        unique: false
     },
     data: Array(5)
 

@@ -31,7 +31,7 @@ $(document).ready(function() {
                 if(data.result == 'success')
                     window.location.href = '/main';
                 else {
-                    $('#error_message').html("이미 가입된 학번입니다. 로그인해주세요.!");
+                    $('#error_message').html("이미 가입된 학번(아이디)입니다. 로그인해주세요.!");
                     $('#error_modal').modal();
                 }
             }
@@ -52,6 +52,31 @@ $(document).ready(function() {
                     $('#error_modal').modal();
                 }
             }
+        })
+    })
+
+    $('.find').on('click', function() {
+        $('#find_form').find('input').val("");
+        $('#find_modal').modal();
+
+        $('#find').on('click', function() {
+            var findObject = {'stdNum':$('#find_stdNum').val(), 'stdName':$('#find_stdName').val(), 'stdBirth':$('#find_birthday').val()};
+            $.ajax({
+                url: '/find',
+                type: 'POST',
+                data: findObject,
+                success: function(data) {
+                    if(data.result == 'success') {
+                        $('#find_modal').modal('hide');
+                        $('#success_message').html("비밀번호가 초기화 되었습니다.<br>초기화된 비밀번호는 <strong>생년월일</strong>입니다.");
+                        $('#success_modal').modal();
+                    }
+                    else {
+                        $('#error_message').html("일치하는 정보가 없습니다. 정확히 입력해주세요.");
+                        $('#error_modal').modal();
+                    }
+                }
+            })
         })
     })
 });

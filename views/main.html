@@ -786,6 +786,32 @@
             <div class="modal-body wrap_profile">
             </div>
             <div class="modal-footer">
+                <button type="button" id='pwChange' class="btn btn-danger" data-dismiss="modal">비밀번호 변경</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="change_modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="menu_title">아래에 정보를 입력해주세요.</h2>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:" id='change_form'>
+                    <label for="change_pw1">현재비밀번호 </label>
+                    <input type="password" id='change_pw1' class='search_input' placeholder="현재비밀번호" required><br>
+                    <label for="change_pw2">현재비밀번호 </label>
+                    <input type="password" id='change_pw2' class='search_input' placeholder="비밀번호 재입력" required><br>
+                    <label for="new_pw">변경비밀번호 </label>
+                    <input type="password" id='new_pw' class='search_input' placeholder="변경 할 비밀번호" required>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type='button' id="change" class="btn btn-success">CHANGE</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>

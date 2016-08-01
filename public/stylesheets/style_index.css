@@ -153,6 +153,14 @@ li.active {
   width:100%;
 }
 
+.find {
+  margin-top: 10px;
+}
+
+.short {
+  margin-left: 22px;
+}
+
 .header{
   text-align:center;
   padding:50px 0;
