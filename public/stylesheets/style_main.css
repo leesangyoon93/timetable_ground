@@ -144,7 +144,7 @@ button#save {
     display: inline;
 }
 
-.compare_input, #search_input {
+.compare_input, #search_input, .search_input {
     display: inline;
     width: 30%;
     height: 35px;
